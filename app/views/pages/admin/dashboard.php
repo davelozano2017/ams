@@ -7,15 +7,13 @@
 <div class="page-header page-header-default">
     <div class="page-header-content">
         <div class="page-title">
-            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Starters</span> - Fixed Main</h4>
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Dashboard</span></h4>
         </div>
     </div>
 
     <div class="breadcrumb-line">
         <ul class="breadcrumb">
-            <li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>
-            <li><a href="layout_navbar_fixed_main.html">Starters</a></li>
-            <li class="active">Fixed main</li>
+            <li class="active"><a href="<?=site_url('dashboard')?>"><i class="icon-home2 position-left"></i> Dashboard</a></li>
         </ul>
     </div>
 </div>
@@ -25,6 +23,24 @@
 <!-- Content area -->
 <div class="content">
 
+    <div class="row">
+        <?php foreach($query as $key => $value) { ?>
+            <div class="col-sm-6 col-md-3">
+                <div class="panel panel-body panel-body-accent">
+                    <div class="media no-margin">
+                        <div class="media-left media-middle">
+                            <i class="icon-cabinet icon-3x text-success-400"></i>
+                        </div>
+
+                        <div class="media-body text-right">
+                            <h3 class="no-margin text-semibold"><?=$value['count']?></h3>
+                            <span class="text-uppercase text-size-mini text-muted"><?=$assets_type[$key]['assets_name']?></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
     <!-- Simple panel -->
     <div class="panel panel-flat">
         <div class="panel-heading">

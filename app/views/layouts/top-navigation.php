@@ -21,14 +21,13 @@
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown dropdown-user">
                 <a class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="<?=base_url()?>assets/images/image.png" alt="">
-                    <span>Victoria</span>
+                    <span><?=$user[0]['name']?></span>
                     <i class="caret"></i>
                 </a>
 
                 <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#"><i class="icon-user-plus"></i> Profile</a></li>
-                    <li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
+                    <li><a href="<?=site_url('admin/profile')?>"><i class="icon-user-plus"></i> Profile</a></li>
+                    <li><a href="<?=site_url('admin/logout')?>"><i class="icon-switch2"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>

@@ -24,89 +24,46 @@
 <!-- Content area -->
 <div class="content">
 
+    <!-- Basic responsive configuration -->
+    
     <div class="row">
-        <div class="col-sm-6 col-md-3">
-            <div class="panel panel-body panel-body-accent">
-                <div class="media no-margin">
-                    <div class="media-left media-middle">
-                        <i class="icon-pointer icon-3x text-success-400"></i>
-                    </div>
-
-                    <div class="media-body text-right">
-                        <h3 class="no-margin text-semibold">652,549</h3>
-                        <span class="text-uppercase text-size-mini text-muted">total clicks</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-            <div class="panel panel-body">
-                <div class="media no-margin">
-                    <div class="media-left media-middle">
-                        <i class="icon-enter6 icon-3x text-indigo-400"></i>
-                    </div>
-
-                    <div class="media-body text-right">
-                        <h3 class="no-margin text-semibold">245,382</h3>
-                        <span class="text-uppercase text-size-mini text-muted">total visits</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-            <div class="panel panel-body">
-                <div class="media no-margin">
-                    <div class="media-body">
-                        <h3 class="no-margin text-semibold">54,390</h3>
-                        <span class="text-uppercase text-size-mini text-muted">total comments</span>
-                    </div>
-
-                    <div class="media-right media-middle">
-                        <i class="icon-bubbles4 icon-3x text-blue-400"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-3">
-            <div class="panel panel-body">
-                <div class="media no-margin">
-                    <div class="media-body">
-                        <h3 class="no-margin text-semibold">389,438</h3>
-                        <span class="text-uppercase text-size-mini text-muted">total orders</span>
-                    </div>
-
-                    <div class="media-right media-middle">
-                        <i class="icon-bag icon-3x text-danger-400"></i>
-                    </div>
-                </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="icon-plus2"></i></button>
             </div>
         </div>
     </div>
 
-    <!-- Simple panel -->
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">Simple panel</h5>
-            <div class="heading-elements">
-                <ul class="icons-list">
-                    <li><a data-action="collapse"></a></li>
-                    <li><a data-action="close"></a></li>
-                </ul>
-            </div>
+            <h5 class="panel-title">List of  Personnels</h5>
         </div>
 
-        <div class="panel-body">
-            <h6 class="text-semibold">Start your development with no hassle!</h6>
-            <p class="content-group">Common problem of templates is that all code is deeply integrated into the core. This limits your freedom in decreasing amount of code, i.e. it becomes pretty difficult to remove unnecessary code from the project. Limitless allows you to remove unnecessary and extra code easily just by removing the path to specific LESS file with component styling. All plugins and their options are also in separate files. Use only components you actually need!</p>
-
-            <h6 class="text-semibold">What is this?</h6>
-            <p class="content-group">Starter kit is a set of pages, useful for developers to start development process from scratch. Each layout includes base components only: layout, page kits, color system which is still optional, bootstrap files and bootstrap overrides. No extra CSS/JS files and markup. CSS files are compiled without any plugins or components. Starter kit was moved to a separate folder for better accessibility.</p>
-
-            <h6 class="text-semibold">How does it work?</h6>
-            <p>You open one of the starter pages, add necessary plugins, uncomment paths to files in components.less file, compile new CSS. That's it. I'd also recommend to open one of main pages with functionality you need and copy all paths/JS code from there to your new page, it's just faster and easier.</p>
-        </div>
+        <table style="overflow:hidden;" class="table datatable-responsive">
+            <thead>
+                <tr>
+                    <th style="width:1px">#</th>
+                    <th>Id Number</th>
+                    <th>Name</th>
+                    <th style="width:1px">Contact</th>
+                    <th style="width:1px">Role</th>
+                    <th>Email Address</th>
+                    <th style="width:1px"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php $i=1; foreach($query as $row) { ?> 
+                    <tr>
+                        <td><?=$i++?></td>
+                        <td><?=$row['id_number']?></td>
+                        <td><?=$row['name']?></td>
+                        <td><?=$row['contact']?></td>
+                        <td><?=$row['role'] == 0 ? '<span class="label label-danger">Super Admin</span>' : '<span class="label label-success">Admin</span>';?></td>
+                        <td><?=$row['email']?></td>
+                        <td><a>View</a></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
-    <!-- /simple panel -->
+<!-- /basic responsive configuration -->

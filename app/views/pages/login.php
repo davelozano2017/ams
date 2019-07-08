@@ -10,10 +10,11 @@
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
 	<link href="<?=base_url()?>assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/core.min.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/components.min.css" rel="stylesheet" type="text/css">
-	<link href="assets/css/colors.min.css" rel="stylesheet" type="text/css">
+	<link href="<?=base_url()?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="<?=base_url()?>assets/css/core.min.css" rel="stylesheet" type="text/css">
+	<link href="<?=base_url()?>assets/css/components.min.css" rel="stylesheet" type="text/css">
+	<link href="<?=base_url()?>assets/css/colors.min.css" rel="stylesheet" type="text/css">
+    <link href="<?=base_url()?>assets/parsley/parsley.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 </head>
 
@@ -32,23 +33,24 @@
 				<div class="content">
 
 					<!-- Advanced login -->
-					<!-- <form action="<?=site_url('account/secureLogin')?>" method="POST"> -->
-					<form action="<?=site_url('dashboard')?>" method="POST">
+					<form action="<?=site_url('accounts/secureLogin')?>" data-parsley-validate method="POST">
+						<input type="hidden" name="token" value="<?=$token?>">
 						<div class="panel panel-body login-form">
+						<?= !isset($_SESSION['message']) ? '' : '<div class="alert bg-info text-white alert-styled-left ">'.$_SESSION['message'].'</div>'; ?>  
 							<div class="text-center">
 								<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
 								<h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>
 							</div>
 
 							<div class="form-group has-feedback has-feedback-left">
-								<input type="email" class="form-control" placeholder="Email Address">
+								<input type="email" name="email" class="form-control" placeholder="Email Address" required>
 								<div class="form-control-feedback">
 									<i class="icon-envelope text-muted"></i>
 								</div>
 							</div>
 
 							<div class="form-group has-feedback has-feedback-left">
-								<input type="password" autocomplete="new-password" class="form-control" placeholder="Password">
+								<input type="password" name="password" autocomplete="new-password" class="form-control" placeholder="Password" required>
 								<div class="form-control-feedback">
 									<i class="icon-lock2 text-muted"></i>
 								</div>
@@ -64,7 +66,7 @@
 									</div>
 
 									<div class="col-sm-6 text-right">
-										<a href="login_password_recover.html">Forgot password?</a>
+										<a href="<?=site_url('recover')?>">Forgot password?</a>
 									</div>
 								</div>
 							</div>
@@ -72,8 +74,6 @@
 							<div class="form-group">
 								<button type="submit" style="border-radius:0px" class="btn bg-blue btn-block">Login <i class="icon-arrow-right14 position-right"></i></button>
 							</div>
-							<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
-							<a href="<?=site_url('register')?>" style="border-radius:0px" class="btn btn-default btn-block content-group">Sign up</a>
 						</div>
 					</form>
 					<!-- /advanced login -->
@@ -109,6 +109,7 @@
 
 	<script src="<?=base_url()?>assets/js/app.js"></script>
 	<script src="<?=base_url()?>assets/js/demo_pages/login.js"></script>
+	<script src="<?=base_url()?>assets/parsley/parsley.min.js"></script>
 	<!-- /theme JS files -->
 </body>
 </html>
