@@ -36,7 +36,7 @@
 					<form action="<?=site_url('accounts/secureLogin')?>" data-parsley-validate method="POST">
 						<input type="hidden" name="token" value="<?=$token?>">
 						<div class="panel panel-body login-form">
-						<?= !isset($_SESSION['message']) ? '' : '<div class="alert bg-info text-white alert-styled-left ">'.$_SESSION['message'].'</div>'; ?>  
+						<?= !isset($_SESSION['message']) ? '' : '<div class="alert bg-info text-white alert-styled-left ">'.$_SESSION['message'].'</div>'; unset($_SESSION['message']) ?>  
 							<div class="text-center">
 								<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
 								<h5 class="content-group">Login to your account <small class="display-block">Your credentials</small></h5>

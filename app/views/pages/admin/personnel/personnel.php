@@ -29,8 +29,10 @@
     <div class="row">
         <div class="col-md-12">
             <div class="form-group">
-                <button type="submit" class="btn btn-primary"><i class="icon-plus2"></i></button>
+                <a href="<?=site_url('personnel/create')?>" class="btn btn-primary">Create <i class="icon-arrow-right14 position-right"></i></a>
             </div>
+            <?= !isset($_SESSION['message']) ? '' : '<div class="alert bg-info text-white alert-styled-left ">'.$_SESSION['message'].'</div>'; unset($_SESSION['message']) ?>  
+
         </div>
     </div>
 
@@ -46,6 +48,7 @@
                     <th>Id Number</th>
                     <th>Name</th>
                     <th style="width:1px">Contact</th>
+                    <th style="width:1px">Status</th>
                     <th style="width:1px">Role</th>
                     <th>Email Address</th>
                     <th style="width:1px"></th>
@@ -58,9 +61,10 @@
                         <td><?=$row['id_number']?></td>
                         <td><?=$row['name']?></td>
                         <td><?=$row['contact']?></td>
+                        <td><?=$row['status'] == 0 ? '<span class="label label-primary">Active</span>' : '<span class="label label-danger">Not Active</span>';?></td>
                         <td><?=$row['role'] == 0 ? '<span class="label label-danger">Super Admin</span>' : '<span class="label label-success">Admin</span>';?></td>
                         <td><?=$row['email']?></td>
-                        <td><a>View</a></td>
+                        <td><a href="<?=site_url('personnel/view/'.encode($row['accounts_id']))?>">View</a></td>
                     </tr>
                 <?php } ?>
             </tbody>

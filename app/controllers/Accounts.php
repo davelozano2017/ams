@@ -16,91 +16,65 @@ class Accounts extends Controller {
         }
     }
 
-    public function createLibrarian() {
+    public function createPersonnel() {
         if($this->token == post('token')) {
-            $accountCredentials = array(
-                'username'   => post('username'),
-                'password'   => hashing('password'),
-                'role'       => 0
+            $data = array(
+                'id_number'     => post('id_number'),
+                'name'          => post('name'),
+                'contact'       => post('contact'),
+                'email'         => post('email'),
+                'password'      => hashing('12345'),
+                'role'          => 1,
+                'status'        => 1
             );
-            $result = $this->model->use('AccountModel')->createCredentials($accountCredentials);
-            if($result) {
-                $accountDetails = array(
-                    'accounts_id' => $result,
-                    'photos'      => 'default.png',
-                    'surname'     => post('surname'), 
-                    'firstname'   => post('firstname'),
-                    'middlename'  => post('middlename'),
-                    'email'       => post('email'),
-                    'contact'     => post('contact'),
-                );
-                $this->model->use('AccountModel')->createLibrarian($accountDetails);
-            } 
+            $this->model->use('AccountsModel')->createPersonnel($data);
         } else {
             $this->load->view('errors');
         }
     }
 
-    public function updateLibrarian() {
+    public function updatePersonnel() {
         if($this->token == post('token')) {
             $data = array(
                 'accounts_id' => decode(post('accounts_id')),
-                'surname'     => post('surname'), 
-                'firstname'   => post('firstname'),
-                'middlename'  => post('middlename'),
+                'id_number'   => post('id_number'), 
+                'name'        => post('name'),
+                'contact'     => post('contact'),
                 'email'       => post('email'),
-                'contact'     => post('contact')
+                'status'     => post('status')
             );
-            $this->model->use('AccountModel')->updateLibrarian($data);
+            $this->model->use('AccountsModel')->updatePersonnel($data);
         } 
     }
 
     public function updateProfile() {
         if($this->token == post('token')) {
-            $accounts_id = decode(post('accounts_id'));
-            $password = post('password');
-            $cp = post('cp');
-            $table = $_SESSION['role'] == 0 ? 'librarian' : 'students';
-            if(empty($password)) {
-                $credentials = array(
-                    'username'    => post('username'),
-                    'accounts_id' => $accounts_id
-                );
+            $accounts_id      = decode(post('accounts_id'));
+            $password         = post('password');
+            $confirm_password = post('confirm_password');
+            if($password != $confirm_password || $confirm_password != $password) {
+                redirect('admin/profile','Password mismatched.');
             } else {
-                if($password != $cp || $cp != $password) {
-                    redirect('students/profile','Password mismatched.');
+                if(empty($password)) {
+                    $data = array(
+                        'name'        => post('name'),
+                        'contact'     => post('contact'),
+                        'email'       => post('email'),
+                        'accounts_id' => $accounts_id
+                    );
                 } else {
-                    $credentials = array(
-                        'username'    => post('username'),
+                    $data = array(
+                        'name'        => post('name'),
+                        'contact'     => post('contact'),
+                        'email'       => post('email'),
                         'password'    => hashing($password),
                         'accounts_id' => $accounts_id
                     );
                 }
                 
             }
-            $this->model->use('AccountModel')->updateCredentials($credentials);
+            $this->model->use('AccountsModel')->updateProfile($data);
 
-            if(!empty($_FILES['files']['name'])) {
-                $data = array(
-                    'accounts_id' => $accounts_id,
-                    'photos'      => $_FILES['files']['name'],
-                    'surname'     => post('surname'), 
-                    'firstname'   => post('firstname'),
-                    'middlename'  => post('middlename'),
-                    'email'       => post('email'),
-                    'contact'     => post('contact')
-                );
-            } else {
-                $data = array(
-                    'accounts_id' => $accounts_id,
-                    'surname'     => post('surname'), 
-                    'firstname'   => post('firstname'),
-                    'middlename'  => post('middlename'),
-                    'email'       => post('email'),
-                    'contact'     => post('contact')
-                );
-            }
-            $this->model->use('AccountModel')->updateProfile($data,$table);
         }    
     }
 
