@@ -7,6 +7,8 @@ class Personnel extends Controller {
         $_SESSION['token'] = token;
         if(!isset($_SESSION['accounts_id'])) {
             redirect('login');
+        } elseif($_SESSION['role'] == 1) {
+            $this->load->view('errors');
         }
 	}
 

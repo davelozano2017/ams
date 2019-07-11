@@ -5,7 +5,7 @@ class AccountsModel extends Model {
     protected $table = 'accounts';
 
     public function __construct() {
-        parent::__construct();
+        parent:: __construct();
     }
        
     public function createPersonnel($data) {
@@ -24,8 +24,8 @@ class AccountsModel extends Model {
        redirect('admin/profile/','Details has been updated');
     }
 
-    public function countUsers($role) {
-        return $this->db->count($this->table,'*',['role' => $role]);
+    public function countAllUsers() {
+        return $this->db->count($this->table,'*',['role' => 1]);
     }
 
     public function GetAllPersonnels() {
@@ -40,10 +40,10 @@ class AccountsModel extends Model {
     public function secureLogin($data) {
         if($this->db->has($this->table,['email' => $data['email']])) {
             $check = $this->db->select('accounts','*',['email' => $data['email']]);
-            $hash = $check[0]['password'];
+            $hash  = $check[0]['password'];
             if(verify($data['password'],$hash)) {
                 $_SESSION['accounts_id'] = $check[0]['accounts_id'];
-                $_SESSION['role'] = $check[0]['role'];
+                $_SESSION['role']        = $check[0]['role'];
                 redirect('admin/profile');
             } else {
                 redirect('login','Invalid username or password');

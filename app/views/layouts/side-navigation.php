@@ -35,8 +35,12 @@
 				<li class="<?=$dropdown == 'assets' ? 'active' : '' ?>">
 					<a href="#"><i class="icon-stack"></i> <span>Assets</span></a>
 					<ul>
-						<?php foreach($assets_type as $row){  ?>
-							<li class="<?=$title == $row['assets_name'] ? 'active' : ''?>"><a href="<?=site_url('assets/view/'.encode($row['assets_type_id']))?>"><?=$row['assets_name']?></a></li>
+						<?php if(empty($assets_type)) { ?>
+								<li class=""><a href="#">No Record Found</a></li>
+						<?php } else { ?>
+							<?php foreach($assets_type as $row){  ?>
+								<li class="<?=$title == $row['assets_name'] ? 'active' : ''?>"><a href="<?=site_url('assets/view/'.encode($row['assets_type_id']))?>"><?=$row['assets_name']?></a></li>
+							<?php } ?>
 						<?php } ?>
 					</ul>
 				</li>
@@ -44,15 +48,24 @@
 				<li class="<?=$dropdown == 'vendors' ? 'active' : '' ?>">
 					<a href="#"><i class="icon-folder6"></i> <span>Vendors</span></a>
 					<ul>
-						<?php foreach($allVendors as $row){ ?>
-							<li class="<?=$title == 'vendor-'.$row['vendors_id'] ? 'active' : ''?>"><a href="<?=site_url('vendors/view/'.encode($row['vendors_id']))?>"><?=$row['name']?></a></li>
+						<?php if(empty($allVendors)) { ?> 
+							<li class=""><a href="#">No Record Found</a></li>
+						<?php } else { ?>
+							<?php foreach($allVendors as $row){ ?>
+								<li class="<?=$title == 'vendor-'.$row['vendors_id'] ? 'active' : ''?>"><a href="<?=site_url('vendors/view/'.encode($row['vendors_id']))?>"><?=$row['name']?></a></li>
+							<?php } ?>
 						<?php } ?>
 					</ul>
 				</li>
-
-				<li class="<?=$title == 'personnel' ? 'active' : '' ?>"><a href="<?=site_url('personnel')?>"><i class="icon-collaboration"></i><span>Personnel</span></a></li>
-
 				<li class="<?=$title == 'reports' ? 'active' : '' ?>"><a href="<?=site_url('reports')?>"><i class="icon-graph"></i><span>Report</span></a></li>
+
+				<?php if($_SESSION['role'] == 1) { ?>
+
+				<?php } else { ?> 
+					<li class="<?=$title == 'personnel' ? 'active' : '' ?>"><a href="<?=site_url('personnel')?>"><i class="icon-collaboration"></i><span>Personnel</span></a></li>
+					<li class="<?=$title == 'settings' ? 'active' : '' ?>"><a href="<?=site_url('settings')?>"><i class="icon-gear"></i><span>Settings</span></a></li>
+				<?php } ?>
+				
 				<!-- /main -->
 			</ul>
 		</div>

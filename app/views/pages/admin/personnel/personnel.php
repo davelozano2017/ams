@@ -32,7 +32,6 @@
                 <a href="<?=site_url('personnel/create')?>" class="btn btn-primary">Create <i class="icon-arrow-right14 position-right"></i></a>
             </div>
             <?= !isset($_SESSION['message']) ? '' : '<div class="alert bg-info text-white alert-styled-left ">'.$_SESSION['message'].'</div>'; unset($_SESSION['message']) ?>  
-
         </div>
     </div>
 

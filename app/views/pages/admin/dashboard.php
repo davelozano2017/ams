@@ -40,6 +40,22 @@
                 </div>
             </div>
         <?php } ?>
+        <!-- file:///D:/need%20ko/Paid%20Templates/limitless-201/Bootstrap%203/Template/layout_1/LTR/default/full/form_select2.html -->
+        <div class="col-sm-6 col-md-3">
+            <div class="panel panel-body panel-body-accent">
+                <div class="media no-margin">
+                    <div class="media-left media-middle">
+                        <i class="icon-users4 icon-3x text-success-400"></i>
+                    </div>
+
+                    <div class="media-body text-right">
+                        <h3 class="no-margin text-semibold"><?=$countAllUsers?></h3>
+                        <span class="text-uppercase text-size-mini text-muted">Personnels</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
     <!-- Simple panel -->
     <div class="panel panel-flat">

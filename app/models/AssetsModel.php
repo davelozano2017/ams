@@ -5,7 +5,7 @@ class AssetsModel extends model {
     protected $table = ['assets','assets_type'];
 
     public function __construct() {
-        parent::__construct();
+        parent:: __construct();
     }
 
     public function GetAllAssetsType() {
