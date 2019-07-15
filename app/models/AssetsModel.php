@@ -2,7 +2,7 @@
 
 class AssetsModel extends model {
 
-    protected $table = ['assets','assets_type'];
+    protected $table = ['assets','assets_type','vendors','brands'];
 
     public function __construct() {
         parent:: __construct();
@@ -10,6 +10,22 @@ class AssetsModel extends model {
 
     public function GetAllAssetsType() {
         return $this->db->select($this->table[1],'*');
+    }
+
+    public function GetAllAssets($assets_type_id) {
+        return $this->db->select($this->table[0], [
+            "[>]".$this->table[1] => ["assets_type_id" => "assets_type_id"],
+            "[>]".$this->table[2] => ["vendors_id" => "vendors_id"],
+            "[>]".$this->table[3] => ["brands_id" => "brands_id"]
+        ],'*',[$this->table[1].'.assets_type_id' => $assets_type_id]);
+    }
+
+    public function GetAssetByAssetsId($assets_id) {
+        return $this->db->select($this->table[0], [
+            "[>]".$this->table[1] => ["assets_type_id" => "assets_type_id"],
+            "[>]".$this->table[2] => ["vendors_id" => "vendors_id"],
+            "[>]".$this->table[3] => ["brands_id" => "brands_id"]
+        ],'*',[$this->table[0].'.assets_id' => $assets_id]);
     }
 
     public function GetAssetsTypeByAssetsId($assets_type_id) {

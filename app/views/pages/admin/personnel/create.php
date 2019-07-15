@@ -24,8 +24,8 @@
 
 <!-- Content area -->
 <div class="content">
-    <form action="<?=site_url('accounts/createPersonnel')?>" method="POST" data-parsley-validate class="form-horizontal">
-    <input type="hidden" name="token" value="<?=$token?>">
+<form action="<?=site_url('accounts/createPersonnel')?>" method="POST" data-parsley-validate class="form-horizontal">
+<input type="hidden" name="token" value="<?=$token?>">
         <div class="panel panel-flat">
             <div class="panel-body">
                 

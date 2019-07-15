@@ -24,29 +24,110 @@
 
 <!-- Content area -->
 <div class="content">
+<?= !isset($_SESSION['message']) ? '' : '<div class="alert bg-info text-white alert-styled-left ">'.$_SESSION['message'].'</div>'; unset($_SESSION['message']) ?>  
 
     <div class="row">
         <div class="col-md-5">
-            <div class="panel panel-flat">
+        <div class="panel panel-flat">
                 <div class="panel-heading">
-                    <h5 class="panel-title">Simple panel</h5>
-                    <div class="heading-elements">
-                        <ul class="icons-list">
-                            <li><a data-action="collapse"></a></li>
-                            <li><a data-action="close"></a></li>
-                        </ul>
-                    </div>
+                    <h5 class="panel-title">Asset Information</h5>
                 </div>
 
                 <div class="panel-body">
-                    <h6 class="text-semibold">Start your development with no hassle!</h6>
-                    <p class="content-group">Common problem of templates is that all code is deeply integrated into the core. This limits your freedom in decreasing amount of code, i.e. it becomes pretty difficult to remove unnecessary code from the project. Limitless allows you to remove unnecessary and extra code easily just by removing the path to specific LESS file with component styling. All plugins and their options are also in separate files. Use only components you actually need!</p>
+                    <form action="<?=site_url('maintenance/createAssets')?>" enctype="multipart/form-data" method="POST" data-parsley-validate class="form-horizontal">
+                        <input type="hidden" name="token" value="<?=$token?>">
+                        <input type="hidden" name="assets_type_id" value="<?=$assets_type_id?>">
+                        <input type="hidden" name="function" value="create">
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Image:</label>
+                            <div class="col-lg-9">
+                                <input type="file" name="files" class="form-control">
+                            </div>
+                        </div>
 
-                    <h6 class="text-semibold">What is this?</h6>
-                    <p class="content-group">Starter kit is a set of pages, useful for developers to start development process from scratch. Each layout includes base components only: layout, page kits, color system which is still optional, bootstrap files and bootstrap overrides. No extra CSS/JS files and markup. CSS files are compiled without any plugins or components. Starter kit was moved to a separate folder for better accessibility.</p>
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Serial #:</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="serial_number" class="form-control" required>
+                            </div>
+                        </div>
 
-                    <h6 class="text-semibold">How does it work?</h6>
-                    <p>You open one of the starter pages, add necessary plugins, uncomment paths to files in components.less file, compile new CSS. That's it. I'd also recommend to open one of main pages with functionality you need and copy all paths/JS code from there to your new page, it's just faster and easier.</p>
+                        
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Brand:</label>
+                            <div class="col-lg-9">
+                                <select name="brands_id" class="form-control">
+                                    <?php foreach($brands_type as $brand) { ?> 
+                                        <option value="<?=encode($brand['brands_id'])?>"><?=$brand['brands_name']?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Description:</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="description" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Status:</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="status"  class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Model:</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="model" class="form-control"  required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Warranty Expiry:</label>
+                            <div class="col-lg-9">
+                                <input type="date" name="warranty_expiry" class="form-control"  required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Vendor:</label>
+                            <div class="col-lg-9">
+                                <select name="vendors_id" class="form-control">
+                                    <?php foreach($allVendors as $vendor) { ?> 
+                                        <option value="<?=encode($vendor['vendors_id'])?>"><?=$vendor['name']?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Purchase Price:</label>
+                            <div class="col-lg-9">
+                                <input type="number" name="purchase_price" class="form-control"  required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Expected Life:</label>
+                            <div class="col-lg-9">
+                                <input type="date" name="expected_life" class="form-control"  required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Scrap Value:</label>
+                            <div class="col-lg-9">
+                                <input type="text" name="scrap_value" class="form-control"  required>
+                            </div>
+                        </div>
+
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -54,24 +135,40 @@
         <div class="col-md-7">
             <div class="panel panel-flat">
                 <div class="panel-heading">
-                    <h5 class="panel-title">Simple panel</h5>
-                    <div class="heading-elements">
-                        <ul class="icons-list">
-                            <li><a data-action="collapse"></a></li>
-                            <li><a data-action="close"></a></li>
-                        </ul>
-                    </div>
+                    <h5 class="panel-title">List of Assets</h5>
                 </div>
-
+                    
                 <div class="panel-body">
-                    <h6 class="text-semibold">Start your development with no hassle!</h6>
-                    <p class="content-group">Common problem of templates is that all code is deeply integrated into the core. This limits your freedom in decreasing amount of code, i.e. it becomes pretty difficult to remove unnecessary code from the project. Limitless allows you to remove unnecessary and extra code easily just by removing the path to specific LESS file with component styling. All plugins and their options are also in separate files. Use only components you actually need!</p>
-
-                    <h6 class="text-semibold">What is this?</h6>
-                    <p class="content-group">Starter kit is a set of pages, useful for developers to start development process from scratch. Each layout includes base components only: layout, page kits, color system which is still optional, bootstrap files and bootstrap overrides. No extra CSS/JS files and markup. CSS files are compiled without any plugins or components. Starter kit was moved to a separate folder for better accessibility.</p>
-
-                    <h6 class="text-semibold">How does it work?</h6>
-                    <p>You open one of the starter pages, add necessary plugins, uncomment paths to files in components.less file, compile new CSS. That's it. I'd also recommend to open one of main pages with functionality you need and copy all paths/JS code from there to your new page, it's just faster and easier.</p>
+                    <table style="overflow:hidden;" class="table datatable-responsive">
+                        <thead>
+                            <tr>
+                                <th style="width:1px">#</th>
+                                <th>Serial</th>
+                                <th>Brand</th>
+                                <th>Asset</th>
+                                <th>Status</th>
+                                <th>Model</th>
+                                <th>Waranty</th>
+                                <th>Vendor</th>
+                                <th style="width:1px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $i=1; foreach($listOfAssets as $asset) { ?> 
+                                <tr>
+                                    <td><?=$i++?></td>
+                                    <td><?=$asset['serial_number']?></td>
+                                    <td><?=$asset['brands_name']?></td>
+                                    <td><?=$asset['assets_name']?></td>
+                                    <td><?=$asset['status']?></td>
+                                    <td><?=$asset['model']?></td>
+                                    <td><?=$asset['warranty_expiry']?></td>
+                                    <td><?=$asset['name']?></td>
+                                    <td><a href="<?=site_url('assets/modify/'.encode($asset['assets_id']))?>">View</a></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

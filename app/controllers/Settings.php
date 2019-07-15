@@ -16,6 +16,7 @@ class Settings extends Controller {
         $data['type']        = $this->model->use('AssetsModel')->GetAllAssetsType();
         $data['user']        = $this->model->use('AccountsModel')->GetUserByAccountsId($_SESSION['accounts_id']);
         $data['assets_type'] = $this->model->use('AssetsModel')->GetAllAssetsType();
+        $data['brands_type'] = $this->model->use('BrandsModel')->GetAllBrands();
         $data['allVendors']  = $this->model->use('VendorsModel')->GetAllVendors();
         $data['settings']    = $this->settings;
         $data['token']       = $_SESSION['token'];

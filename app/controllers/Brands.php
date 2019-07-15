@@ -1,6 +1,6 @@
 <?php
 
-class Assets extends Controller {
+class Brands extends Controller {
 
     public function __construct(){
         parent::__construct();
@@ -20,13 +20,9 @@ class Assets extends Controller {
         empty($data['getAssetsType']) ? redirect('settings') : '';
         $data['assets_type']    = $this->model->use('AssetsModel')->GetAllAssetsType();
         $data['allVendors']     = $this->model->use('VendorsModel')->GetAllVendors();
-        $data['brands_type']    = $this->model->use('BrandsModel')->GetAllBrands();
         $data['user']           = $this->model->use('AccountsModel')->GetUserByAccountsId($_SESSION['accounts_id']);
-        $data['listOfAssets']   = $this->model->use('AssetsModel')->GetAllAssets($assets_type_id);
         $data['dropdown']       = 'assets';
-        $data['token']          = $_SESSION['token'];
         $data['title']          = $data['getAssetsType'][0]['assets_name'];
-        $data['assets_type_id'] = $id;
         $this->load->view('layouts/header',$data);
         $this->load->view('layouts/top-navigation',$data);
         $this->load->view('layouts/side-navigation',$data);
@@ -36,9 +32,9 @@ class Assets extends Controller {
     }
 
     public function edit($id) {
-        $assets_type_id         = decode($id);
-        $data['getAssetsType']  = $this->model->use('AssetsModel')->GetAssetsTypeByAssetsId($assets_type_id);
-        empty($data['getAssetsType']) ? redirect('settings') : '';
+        $brands_id              = decode($id);
+        $data['getBrands']  = $this->model->use('BrandsModel')->GetBrandsByBrandsId($brands_id);
+        empty($data['getBrands']) ? redirect('settings') : '';
         $data['assets_type']    = $this->model->use('AssetsModel')->GetAllAssetsType();
         $data['allVendors']     = $this->model->use('VendorsModel')->GetAllVendors();
         $data['user']           = $this->model->use('AccountsModel')->GetUserByAccountsId($_SESSION['accounts_id']);
@@ -47,27 +43,7 @@ class Assets extends Controller {
         $this->load->view('layouts/header',$data);
         $this->load->view('layouts/top-navigation',$data);
         $this->load->view('layouts/side-navigation',$data);
-        $this->load->view('pages/admin/assets/edit',$data);
-        $this->load->view('layouts/footer',$data);
-        $this->load->view('layouts/scripts',$data);
-    }
-
-
-    public function modify($id) {
-        $assets_id         = decode($id);
-        $data['getAssets']  = $this->model->use('AssetsModel')->GetAssetByAssetsId($assets_id);
-        empty($data['getAssets']) ? redirect('settings') : '';
-        $data['assets_type']    = $this->model->use('AssetsModel')->GetAllAssetsType();
-        $data['brands_type']    = $this->model->use('BrandsModel')->GetAllBrands();
-        $data['allVendors']     = $this->model->use('VendorsModel')->GetAllVendors();
-        $data['user']           = $this->model->use('AccountsModel')->GetUserByAccountsId($_SESSION['accounts_id']);
-        $data['token']          = $_SESSION['token'];
-        $data['dropdown']       = 'assets';
-        $data['title']          = $data['getAssets'][0]['assets_name'];
-        $this->load->view('layouts/header',$data);
-        $this->load->view('layouts/top-navigation',$data);
-        $this->load->view('layouts/side-navigation',$data);
-        $this->load->view('pages/admin/assets/modify',$data);
+        $this->load->view('pages/admin/brands/edit',$data);
         $this->load->view('layouts/footer',$data);
         $this->load->view('layouts/scripts',$data);
     }
@@ -81,7 +57,7 @@ class Assets extends Controller {
         $this->load->view('layouts/header',$data);
         $this->load->view('layouts/top-navigation',$data);
         $this->load->view('layouts/side-navigation',$data);
-        $this->load->view('pages/admin/assets/create',$data);
+        $this->load->view('pages/admin/brands/create',$data);
         $this->load->view('layouts/footer',$data);
         $this->load->view('layouts/scripts',$data);
     }

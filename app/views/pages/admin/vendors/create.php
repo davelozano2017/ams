@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Address:</label>
                     <div class="col-lg-9">
-                        <input type="text" name="website" class="form-control">
+                        <input type="text" name="address" class="form-control">
                     </div>
                 </div>
 

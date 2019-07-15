@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2019 at 08:30 PM
+-- Generation Time: Jul 14, 2019 at 08:34 PM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -35,6 +35,7 @@ CREATE TABLE `accounts` (
   `contact` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL,
   `role` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -42,9 +43,13 @@ CREATE TABLE `accounts` (
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`accounts_id`, `id_number`, `name`, `contact`, `email`, `password`, `role`) VALUES
-(1, '10000101', 'John David Lozano', '09952255125', 'lozanojohndavid@gmail.com', '$2y$10$u94qMU40vmktE2QT.n.yp.zcj.feFubhPEHQ4Bj00Gf0NBFGBh0jy', '0'),
-(2, '10000102', 'Iryn Mary', '09952255125', 'irynmary@gmail.com', '$2y$10$u94qMU40vmktE2QT.n.yp.zcj.feFubhPEHQ4Bj00Gf0NBFGBh0jy', '1');
+INSERT INTO `accounts` (`accounts_id`, `id_number`, `name`, `contact`, `email`, `password`, `status`, `role`) VALUES
+(1, '100001011', 'John David Lozano', '09952255125', 'lozanojohndavid@gmail.com', '$2y$10$QSL2vlEnp1NW/vZHhU6uNuJAbxkcBBIwlOA8Esw.buO5x2yIRQKqO', 0, '0'),
+(2, '100001021', 'Iryn Mary', '09952255125', 'irynmary@gmail.com', '$2y$10$u94qMU40vmktE2QT.n.yp.zcj.feFubhPEHQ4Bj00Gf0NBFGBh0jy', 0, '1'),
+(3, '100029930', 'Arjeth Pascual', '09229933922', 'arjethpascual@gmail.com', '$2y$10$K21JH4p4lAH4p4FjvLxy3.YGj8xti3XE/ZwHLLiaoH8NI4o/FG79.', 0, '1'),
+(4, '100001019', 'Gilbert Artates', '09229929292', 'gilber@gmail.com', '$2y$10$4643rZINMQNSK1IbcXujEuCGu90XfkhBStpDvZokJXGEOaRuVL322', 0, '1'),
+(5, '100299109', 'Arvin Manait', '0922991992', 'arvinmanait@gmail.com', '$2y$10$EYsg7.fSn1qlV/5sXIarB.HHdZq.L0EHYe5Hk8Y89Bcy0gUz1nJ.W', 0, '1'),
+(6, '100001020', 'Leo Nardo', '09291988291', 'leonardo@gmail.com', '$2y$10$AkrPB1CyByhAJzM8aCalnOF4Ntqqu1Qj8s3XGOrh4wyRxHk1hBbR2', 0, '1');
 
 -- --------------------------------------------------------
 
@@ -55,6 +60,7 @@ INSERT INTO `accounts` (`accounts_id`, `id_number`, `name`, `contact`, `email`, 
 CREATE TABLE `assets` (
   `assets_id` int(11) NOT NULL,
   `serial_number` varchar(255) NOT NULL,
+  `brands_id` int(11) NOT NULL,
   `description` varchar(1000) NOT NULL,
   `assets_type_id` int(11) NOT NULL,
   `status` varchar(255) NOT NULL,
@@ -87,6 +93,30 @@ INSERT INTO `assets_type` (`assets_type_id`, `assets_name`) VALUES
 (2, 'Equipment'),
 (3, 'Furniture'),
 (4, 'Hardware');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `brands`
+--
+
+CREATE TABLE `brands` (
+  `brands_id` int(11) NOT NULL,
+  `brands_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `brands`
+--
+
+INSERT INTO `brands` (`brands_id`, `brands_name`) VALUES
+(1, 'Sony'),
+(2, 'Extech'),
+(3, 'Fluke'),
+(4, 'Nokia'),
+(5, 'Samsung'),
+(6, 'HP'),
+(7, 'Dell');
 
 -- --------------------------------------------------------
 
@@ -355,6 +385,26 @@ INSERT INTO `countries` (`id`, `country_code`, `country_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `settings_id` int(11) NOT NULL,
+  `website_name` varchar(255) NOT NULL,
+  `date_format` varchar(255) NOT NULL,
+  `timezone` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`settings_id`, `website_name`, `date_format`, `timezone`) VALUES
+(1, 'Assets Management System', 'F d Y g:i A', 'Asia/Manila');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `vendors`
 --
 
@@ -373,8 +423,8 @@ CREATE TABLE `vendors` (
 --
 
 INSERT INTO `vendors` (`vendors_id`, `name`, `contact`, `website`, `email`, `address`, `country`) VALUES
-(1, 'A M Kuchling', '09995522116', '', 'kuchling@hotmail.com', '31 South Valley Farms St. \r\nLivermore, 94550', ''),
-(2, 'Lorem', '09995522116', '', 'lorem@hotmail.com', 'Quezon City', 'Philippines');
+(1, 'A M Kuchling', '09995522116', 'http://example.com', 'kuchling@hotmail.com', '31 South Valley Farms St. Livermore, 94550', 'California'),
+(2, 'Lorem', '09995522116', 'http://example.com', 'lorem@hotmail.com', 'Quezon City', 'Philippines');
 
 --
 -- Indexes for dumped tables
@@ -399,10 +449,22 @@ ALTER TABLE `assets_type`
   ADD PRIMARY KEY (`assets_type_id`);
 
 --
+-- Indexes for table `brands`
+--
+ALTER TABLE `brands`
+  ADD PRIMARY KEY (`brands_id`);
+
+--
 -- Indexes for table `countries`
 --
 ALTER TABLE `countries`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`settings_id`);
 
 --
 -- Indexes for table `vendors`
@@ -418,19 +480,25 @@ ALTER TABLE `vendors`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `accounts_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `accounts_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
-  MODIFY `assets_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `assets_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `assets_type`
 --
 ALTER TABLE `assets_type`
-  MODIFY `assets_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `assets_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `brands`
+--
+ALTER TABLE `brands`
+  MODIFY `brands_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `countries`
@@ -439,10 +507,16 @@ ALTER TABLE `countries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
 
 --
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `settings_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `vendors`
 --
 ALTER TABLE `vendors`
-  MODIFY `vendors_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `vendors_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

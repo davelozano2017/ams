@@ -30,7 +30,8 @@
             <input type="hidden" name="settings_id" value="<?=encode($settings[0]['settings_id'])?>">
             <input type="hidden" name="token" value="<?=$token?>">
             <div class="col-md-5">
-                <div class="panel panel-flat">
+
+            <div class="panel panel-flat">
                     <div class="panel-heading">
                         <h5 class="panel-title">Settings</h5>
                     </div>
@@ -65,6 +66,39 @@
                         
                     </div>
                 </div>
+
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h5 class="panel-title">List of Brands</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a style="color:#fff" href="<?=site_url('brands/create')?>" class="btn btn-primary">Create <i class="icon-arrow-right14 position-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="panel-body">
+                        <table style="overflow:hidden;" class="table ">
+                            <thead>
+                                <tr>
+                                    <th style="width:1px">#</th>
+                                    <th>Assets Type</th>
+                                    <th style="width:1px"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i=1; foreach($brands_type as $brands) { ?> 
+                                    <tr>
+                                        <td><?=$i++?></td>
+                                        <td><?=$brands['brands_name']?></td>
+                                        <td><a href="<?=site_url('brands/edit/'.encode($brands['brands_id']))?>">View</a></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
             </div>
         </form>
 

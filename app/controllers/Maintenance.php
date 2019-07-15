@@ -21,6 +21,7 @@ class Maintenance extends Controller {
         }
     }
 
+    // assets Type 
     public function updateAssetType() {
         if($this->token == post('token')) {
             $data = array(
@@ -39,6 +40,108 @@ class Maintenance extends Controller {
                 'assets_name' => post('assets_name'),
             );
             $this->model->use('MaintenanceModel')->createAssetType($data);
+        } else {
+            $this->load->view('errors');
+        }
+    }
+
+    // assets 
+    public function createAssets() {
+        if($this->token == post('token')) {
+            if(!empty($_FILES['files']['name'])) {
+                $data = array(
+                    'image'           => $_FILES['files']['name'],
+                    'serial_number'   => post('serial_number'),
+                    'brands_id'       => decode(post('brands_id')),
+                    'description'     => post('description'),
+                    'assets_type_id'  => decode(post('assets_type_id')),
+                    'status'          => post('status'),
+                    'model'           => post('model'),
+                    'warranty_expiry' => post('warranty_expiry'),
+                    'vendors_id'      => decode(post('vendors_id')),
+                    'purchase_price'  => post('purchase_price'),
+                    'expected_life'   => post('expected_life'),
+                    'scrap_value'     => post('scrap_value')
+                );
+            } else {
+                $data = array(
+                    'serial_number'   => post('serial_number'),
+                    'brands_id'       => decode(post('brands_id')),
+                    'description'     => post('description'),
+                    'assets_type_id'  => decode(post('assets_type_id')),
+                    'status'          => post('status'),
+                    'model'           => post('model'),
+                    'warranty_expiry' => post('warranty_expiry'),
+                    'vendors_id'      => decode(post('vendors_id')),
+                    'purchase_price'  => post('purchase_price'),
+                    'expected_life'   => post('expected_life'),
+                    'scrap_value'     => post('scrap_value')
+                );
+            }
+                $this->model->use('MaintenanceModel')->createAssets($data);
+        } else {
+            $this->load->view('errors');
+        }
+    }
+
+    public function updateAssets() {
+        if($this->token == post('token')) {
+            if(!empty($_FILES['files']['name'])) {
+                $data = array(
+                    'assets_id'       => decode(post('assets_id')),
+                    'image'           => $_FILES['files']['name'],
+                    'serial_number'   => post('serial_number'),
+                    'brands_id'       => decode(post('brands_id')),
+                    'description'     => post('description'),
+                    'assets_type_id'  => decode(post('assets_type_id')),
+                    'status'          => post('status'),
+                    'model'           => post('model'),
+                    'warranty_expiry' => post('warranty_expiry'),
+                    'vendors_id'      => decode(post('vendors_id')),
+                    'purchase_price'  => post('purchase_price'),
+                    'expected_life'   => post('expected_life'),
+                    'scrap_value'     => post('scrap_value')
+                );
+            } else {
+                $data = array(
+                    'assets_id'       => decode(post('assets_id')),
+                    'serial_number'   => post('serial_number'),
+                    'brands_id'       => decode(post('brands_id')),
+                    'description'     => post('description'),
+                    'assets_type_id'  => decode(post('assets_type_id')),
+                    'status'          => post('status'),
+                    'model'           => post('model'),
+                    'warranty_expiry' => post('warranty_expiry'),
+                    'vendors_id'      => decode(post('vendors_id')),
+                    'purchase_price'  => post('purchase_price'),
+                    'expected_life'   => post('expected_life'),
+                    'scrap_value'     => post('scrap_value')
+                );
+            }
+                $this->model->use('MaintenanceModel')->updateAssets($data);
+        } else {
+            $this->load->view('errors');
+        }
+    }
+
+    public function updateBrands() {
+        if($this->token == post('token')) {
+            $data = array(
+                'brands_id' => decode(post('brands_id')),
+                'brands_name' => post('brands_name'),
+            );
+            $this->model->use('MaintenanceModel')->updateBrands($data);
+        } else {
+            $this->load->view('errors');
+        }
+    }
+
+    public function createBrands() {
+        if($this->token == post('token')) {
+            $data = array(
+                'brands_name' => post('brands_name'),
+            );
+            $this->model->use('MaintenanceModel')->createBrands($data);
         } else {
             $this->load->view('errors');
         }
