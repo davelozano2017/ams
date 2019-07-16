@@ -37,7 +37,6 @@
                     <form action="<?=site_url('maintenance/createAssets')?>" enctype="multipart/form-data" method="POST" data-parsley-validate class="form-horizontal">
                         <input type="hidden" name="token" value="<?=$token?>">
                         <input type="hidden" name="assets_type_id" value="<?=$assets_type_id?>">
-                        <input type="hidden" name="function" value="create">
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Image:</label>
                             <div class="col-lg-9">

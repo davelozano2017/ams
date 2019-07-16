@@ -82,7 +82,7 @@
                             <thead>
                                 <tr>
                                     <th style="width:1px">#</th>
-                                    <th>Assets Type</th>
+                                    <th>Brands</th>
                                     <th style="width:1px"></th>
                                 </tr>
                             </thead>

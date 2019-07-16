@@ -29,13 +29,15 @@ class MaintenanceModel extends model {
             redirect('assets/view/'.encode($data['assets_type_id']),$data['model'].' already exist.');
         } else {
             $this->db->insert($this->table[3],$data);
+            move_uploaded_file($_FILES['files']['tmp_name'],'assets/uploads/'.$_FILES['files']['name']);
             redirect('assets/view/'.encode($data['assets_type_id']),'New Asset has been added.');
         }
     }
 
     public function updateAssets($data) {
         $this->db->update($this->table[3],$data,['assets_id' => $data['assets_id']]);
-        redirect('assets/modify/'.encode($data['assets_id']),$data['model'].' has been updated.');
+        move_uploaded_file($_FILES['files']['tmp_name'],'assets/uploads/'.$_FILES['files']['name']);
+        redirect('assets/modify/'.encode($data['assets_id']),$data['model'].' has been updated.  <a style="color:#000;font-weight:bolder" href="'.site_url('assets/view/'.encode($data['assets_type_id'])).'">Back</a>');
     }
 
     public function createBrands($data) {

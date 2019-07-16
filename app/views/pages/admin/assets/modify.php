@@ -121,6 +121,7 @@
                 </div>
 
                 <div class="text-right">
+                    <a href="<?=site_url('assets/view/'.encode($getAssets[0]['assets_type_id']))?>" class="btn btn-primary"><i class="icon-arrow-left13 position-left"></i> Back</a>
                     <button type="submit" class="btn btn-primary">Save Changes <i class="icon-arrow-right14 position-right"></i></button>
                 </div>
             </form>
