@@ -44,6 +44,7 @@ class Personnel extends Controller {
         $accounts_id = decode($id);
         $data['assets_type']    = $this->model->use('AssetsModel')->GetAllAssetsType();
         $data['allVendors']     = $this->model->use('VendorsModel')->GetAllVendors();
+        $data['listOfAssets']   = $this->model->use('AssetsModel')->GetAllAssetsByAccountsId($accounts_id);
         $data['user']           = $this->model->use('AccountsModel')->GetUserByAccountsId($_SESSION['accounts_id']);
         $data['query']          = $this->model->use('AccountsModel')->GetUserByAccountsId($accounts_id);
         $data['title']          = 'personnel';

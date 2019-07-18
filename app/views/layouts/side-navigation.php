@@ -52,7 +52,7 @@
 							<li class=""><a href="#">No Record Found</a></li>
 						<?php } else { ?>
 							<?php foreach($allVendors as $row){ ?>
-								<li class="<?=$title == 'vendor-'.$row['vendors_id'] ? 'active' : ''?>"><a href="<?=site_url('vendors/view/'.encode($row['vendors_id']))?>"><?=$row['name']?></a></li>
+								<li class="<?=$title == 'vendor-'.$row['vendors_id'] ? 'active' : ''?>"><a href="<?=site_url('vendors/view/'.encode($row['vendors_id']))?>"><?=$row['vendor_name']?></a></li>
 							<?php } ?>
 						<?php } ?>
 					</ul>

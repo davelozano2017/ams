@@ -7,7 +7,7 @@
 <div class="page-header page-header-default">
     <div class="page-header-content">
         <div class="page-title">
-            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><?=$vendors[0]['name']?></span></h4>
+            <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold"><?=$vendors[0]['vendor_name']?></span></h4>
         </div>
     </div>
 
@@ -16,7 +16,7 @@
             <li><a href="<?=site_url('dashboard')?>"><i class="icon-home2 position-left"></i> Dashboard</a></li>
             <li>Vendors</li>
             <li>edit</li>
-            <li class="active"><?=$vendors[0]['name']?></li>
+            <li class="active"><?=$vendors[0]['vendor_name']?></li>
         </ul>
     </div>
 </div>
@@ -49,7 +49,7 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Website:</label>
                     <div class="col-lg-9">
-                        <input type="text" name="website" value="<?=$vendors[0]['website']?>" class="form-control">
+                        <input type="url" name="website" value="<?=$vendors[0]['website']?>" class="form-control">
                     </div>
                 </div>
 
@@ -63,7 +63,7 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Address:</label>
                     <div class="col-lg-9">
-                        <input type="text" name="address" value="<?=$vendors[0]['address']?>" class="form-control">
+                        <input type="text" name="address" value="<?=$vendors[0]['address']?>" class="form-control" required>
                     </div>
                 </div>
 

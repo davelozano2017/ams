@@ -89,6 +89,7 @@ class Maintenance extends Controller {
             if(!empty($_FILES['files']['name'])) {
                 $data = array(
                     'assets_id'       => decode(post('assets_id')),
+                    'accounts_id'     => decode(post('accounts_id')),
                     'image'           => $_FILES['files']['name'],
                     'serial_number'   => post('serial_number'),
                     'brands_id'       => decode(post('brands_id')),
@@ -105,6 +106,7 @@ class Maintenance extends Controller {
             } else {
                 $data = array(
                     'assets_id'       => decode(post('assets_id')),
+                    'accounts_id'     => decode(post('accounts_id')),
                     'serial_number'   => post('serial_number'),
                     'brands_id'       => decode(post('brands_id')),
                     'description'     => post('description'),

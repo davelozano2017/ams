@@ -60,7 +60,7 @@
                         <td><?=$row['id_number']?></td>
                         <td><?=$row['name']?></td>
                         <td><?=$row['contact']?></td>
-                        <td><?=$row['status'] == 0 ? '<span class="label label-primary">Active</span>' : '<span class="label label-danger">Not Active</span>';?></td>
+                        <td><?=$row['is_status'] == 0 ? '<span class="label label-primary">Active</span>' : '<span class="label label-danger">Not Active</span>';?></td>
                         <td><?=$row['role'] == 0 ? '<span class="label label-danger">Super Admin</span>' : '<span class="label label-success">Admin</span>';?></td>
                         <td><?=$row['email']?></td>
                         <td><a href="<?=site_url('personnel/view/'.encode($row['accounts_id']))?>">View</a></td>

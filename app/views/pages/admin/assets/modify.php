@@ -46,6 +46,18 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Assigned To:</label>
+                    <div class="col-lg-9">
+                        <select name="accounts_id" class="form-control">
+                                <option value="<?=encode($getAssets[0]['accounts_id'])?>" selected><?=$getAssets[0]['name']?></option>
+                            <?php foreach($accounts as $account) { ?> 
+                                <option value="<?=encode($account['accounts_id'])?>"><?=$account['name']?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+
                 
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Brand:</label>
@@ -91,9 +103,9 @@
                     <label class="col-lg-3 control-label">Vendor:</label>
                     <div class="col-lg-9">
                         <select name="vendors_id" class="form-control">
-                        <option value="<?=encode($getAssets[0]['vendors_id'])?>" selected><?=$getAssets[0]['name']?></option>
+                        <option value="<?=encode($getAssets[0]['vendors_id'])?>" selected><?=$getAssets[0]['vendor_name']?></option>
                             <?php foreach($allVendors as $vendor) { ?> 
-                                <option value="<?=$vendor['vendors_id']?>"><?=$vendor['name']?></option>
+                                <option value="<?=$vendor['vendors_id']?>"><?=$vendor['vendor_name']?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -116,7 +128,7 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Scrap Value:</label>
                     <div class="col-lg-9">
-                        <input type="text" name="scrap_value" value="<?=$getAssets[0]['scrap_value']?>" class="form-control"  required>
+                        <input type="number" name="scrap_value" value="<?=$getAssets[0]['scrap_value']?>" class="form-control"  required>
                     </div>
                 </div>
 

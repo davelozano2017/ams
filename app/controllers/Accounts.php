@@ -41,7 +41,7 @@ class Accounts extends Controller {
                 'name'        => post('name'),
                 'contact'     => post('contact'),
                 'email'       => post('email'),
-                'status'     => post('status')
+                'is_status'   => post('status')
             );
             $this->model->use('AccountsModel')->updatePersonnel($data);
         } 
@@ -52,7 +52,7 @@ class Accounts extends Controller {
             $accounts_id      = decode(post('accounts_id'));
             $password         = post('password');
             $confirm_password = post('confirm_password');
-            if($password != $confirm_password || $confirm_password != $password) {
+            if($confirm_password != $password || $password != $confirm_password) {
                 redirect('admin/profile','Password mismatched.');
             } else {
                 if(empty($password)) {
@@ -71,9 +71,8 @@ class Accounts extends Controller {
                         'accounts_id' => $accounts_id
                     );
                 }
-                
+                $this->model->use('AccountsModel')->updateProfile($data);
             }
-            $this->model->use('AccountsModel')->updateProfile($data);
 
         }    
     }
@@ -132,21 +131,4 @@ class Accounts extends Controller {
         redirect('login','Successfully logged out.');
     }
 
-    public function downloadQrCode($username) {
-        $file = 'assets/uploads/qrcode/'.$username.'.png';
-        if (file_exists($file)) {
-            header('Content-Description: File Transfer');
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename='.basename($file));
-            header('Content-Transfer-Encoding: binary');
-            header('Expires: 0');
-            header('Cache-Control: must-revalidate');
-            header('Pragma: public');
-            header('Content-Length: ' . filesize($file));
-            ob_clean();
-            flush();
-            readfile($file);
-            exit;
-        }
-    }
 }

@@ -96,7 +96,7 @@
                             <div class="col-lg-9">
                                 <select name="vendors_id" class="form-control">
                                     <?php foreach($allVendors as $vendor) { ?> 
-                                        <option value="<?=encode($vendor['vendors_id'])?>"><?=$vendor['name']?></option>
+                                        <option value="<?=encode($vendor['vendors_id'])?>"><?=$vendor['vendor_name']?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -162,7 +162,7 @@
                                     <td><?=$asset['status']?></td>
                                     <td><?=$asset['model']?></td>
                                     <td><?=$asset['warranty_expiry']?></td>
-                                    <td><?=$asset['name']?></td>
+                                    <td><?=$asset['vendor_name']?></td>
                                     <td><a href="<?=site_url('assets/modify/'.encode($asset['assets_id']))?>">View</a></td>
                                 </tr>
                             <?php } ?>

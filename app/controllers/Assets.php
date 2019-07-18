@@ -59,6 +59,7 @@ class Assets extends Controller {
         empty($data['getAssets']) ? redirect('settings') : '';
         $data['assets_type']    = $this->model->use('AssetsModel')->GetAllAssetsType();
         $data['brands_type']    = $this->model->use('BrandsModel')->GetAllBrands();
+        $data['accounts']       = $this->model->use('AccountsModel')->GetAllPersonnels();
         $data['allVendors']     = $this->model->use('VendorsModel')->GetAllVendors();
         $data['user']           = $this->model->use('AccountsModel')->GetUserByAccountsId($_SESSION['accounts_id']);
         $data['token']          = $_SESSION['token'];

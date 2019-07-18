@@ -23,6 +23,7 @@ class Vendors extends Controller {
         $data['user']                  = $this->model->use('AccountsModel')->GetUserByAccountsId($_SESSION['accounts_id']);
         $data['title']                 = 'vendor-'.$data['getVendorsByVendorsId'][0]['vendors_id'];
         $data['allVendors']            = $this->model->use('VendorsModel')->GetAllVendors();
+        $data['listOfAssets']          = $this->model->use('AssetsModel')->GetAllAssetsByVendorsId($vendors_id);
         $this->load->view('layouts/header',$data);
         $this->load->view('layouts/top-navigation',$data);
         $this->load->view('layouts/side-navigation',$data);

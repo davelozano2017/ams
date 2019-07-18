@@ -54,7 +54,7 @@
             <div class="form-group">
                 <label class="col-lg-3 control-label">Password:</label>
                 <div class="col-lg-9">
-                    <input type="password" id="password" autocomplete="new-password" name="password" class="form-control">
+                    <input type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  autocomplete="new-password" name="password" class="form-control">
                 </div>
             </div>
 
