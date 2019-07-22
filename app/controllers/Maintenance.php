@@ -149,6 +149,53 @@ class Maintenance extends Controller {
         }
     }
 
+    // notes
+    public function createNote() {
+        if($this->token == post('token')) {
+            $data = array(
+                'note'        => post('note'),
+                'projects_id' => decode(post('projects_id')),
+            );
+            $this->model->use('MaintenanceModel')->createNote($data);
+        } else {
+            $this->load->view('errors');
+        }
+    }
+
+    // projects 
+    public function createProjects() {
+        if($this->token == post('token')) {
+            $data = array(
+                'project_name'  => post('project_name'),
+                'accounts_id'   => decode(post('accounts_id')),
+                'project_type'  => post('project_type'),
+                'cost_estimate' => post('cost_estimate'),
+                'address'       => post('address'),
+            );
+            $this->model->use('MaintenanceModel')->createProjects($data);
+        } else {
+            $this->load->view('errors');
+        }
+    }
+
+    public function updateProjects() {
+        if($this->token == post('token')) {
+            $data = array(
+                'projects_id'   => decode(post('projects_id')),
+                'project_name'  => post('project_name'),
+                'accounts_id'   => decode(post('accounts_id')),
+                'project_type'  => post('project_type'),
+                'project_type'  => post('project_type'),
+                'cost_estimate' => post('cost_estimate'),
+                'address'       => post('address'),
+            );
+            $this->model->use('MaintenanceModel')->updateProjects($data);
+        } else {
+            $this->load->view('errors');
+        }
+    }
+
+    // vendors
     public function updateVendors() {
         if($this->token == post('token')) {
             $data = array(

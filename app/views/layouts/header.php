@@ -17,4 +17,9 @@
 	<link href="<?=base_url()?>assets/css/colors.min.css" rel="stylesheet" type="text/css">
 	<link href="<?=base_url()?>assets/images/logo_icon_dark.png" rel="icon">
 	<!-- /global stylesheets -->
+	<style>
+		button,input[type="submit"],input[type="button"],a	{
+			border-radius:0px !important;
+		}
+	</style>
 </head>

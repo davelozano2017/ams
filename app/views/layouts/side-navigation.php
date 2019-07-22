@@ -63,6 +63,7 @@
 
 				<?php } else { ?> 
 					<li class="<?=$title == 'personnel' ? 'active' : '' ?>"><a href="<?=site_url('personnel')?>"><i class="icon-collaboration"></i><span>Personnel</span></a></li>
+					<li class="<?=$title == 'project' ? 'active' : '' ?>"><a href="<?=site_url('project')?>"><i class="icon-list3"></i><span>Project</span></a></li>
 					<li class="<?=$title == 'settings' ? 'active' : '' ?>"><a href="<?=site_url('settings')?>"><i class="icon-gear"></i><span>Settings</span></a></li>
 				<?php } ?>
 				

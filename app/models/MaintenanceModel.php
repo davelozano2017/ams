@@ -2,7 +2,7 @@
 
 class MaintenanceModel extends model {
 
-    protected $table = ['assets_type','vendors','brands','assets'];
+    protected $table = ['assets_type','vendors','brands','assets','projects','projects_timeline'];
 
     public function __construct() {
         parent:: __construct();
@@ -40,6 +40,27 @@ class MaintenanceModel extends model {
         redirect('assets/modify/'.encode($data['assets_id']),$data['model'].' has been updated.  <a style="color:#000;font-weight:bolder" href="'.site_url('assets/view/'.encode($data['assets_type_id'])).'">Back</a>');
     }
 
+    // projects
+    public function createProjects($data) {
+        if($this->db->has($this->table[4],['project_name' => $data['project_name']])) {
+            redirect('project',$data['project_name'].' already exist.');
+        } else {
+            $this->db->insert($this->table[4],$data);
+            redirect('project','New project has been added.');
+        }
+    }
+
+    public function updateProjects($data) {
+        $this->db->update($this->table[4],$data,['projects_id' => $data['projects_id']]);
+        redirect('project/view/'.encode($data['projects_id']),$data['project_name'].' has been updated.  <a style="color:#000;font-weight:bolder" href="'.site_url('project').'">Back</a>');
+    }
+
+    // note 
+    public function createNote($data) {
+        $this->db->insert($this->table[5],$data);
+        redirect('project/view/'.encode($data['projects_id']),'New Note has been added.');
+    }
+    // brands
     public function createBrands($data) {
         if($this->db->has($this->table[2],['brands_name' => $data['brands_name']])) {
             redirect('settings',$data['brands_name'].' already exist.');

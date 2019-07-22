@@ -161,7 +161,7 @@
                             <?php $i=1; foreach($allVendors as $row) { ?> 
                                 <tr>
                                     <td><?=$i++?></td>
-                                    <td><?=$row['name']?></td>
+                                    <td><?=$row['vendor_name']?></td>
                                     <td><?=empty($row['website']) ? 'N/A' : $row['website']?></td>
                                     <td><?=$row['contact']?></td>
                                     <td><?=$row['email']?></td>
