@@ -180,8 +180,11 @@ class Maintenance extends Controller {
 
     public function updateProjects() {
         if($this->token == post('token')) {
+            $cost_estimate      = post('cost_estimate');
+            $orig_cost_estimate = post('orig_cost_estimate');
+            $project_id         = decode(post('projects_id'));
             $data = array(
-                'projects_id'   => decode(post('projects_id')),
+                'projects_id'   => $project_id,
                 'project_name'  => post('project_name'),
                 'accounts_id'   => decode(post('accounts_id')),
                 'project_type'  => post('project_type'),
@@ -190,6 +193,15 @@ class Maintenance extends Controller {
                 'address'       => post('address'),
             );
             $this->model->use('MaintenanceModel')->updateProjects($data);
+            if($orig_cost_estimate !== $cost_estimate) {
+                $data = array(
+                    'note'        => 'Cost estimated has been changed to '.$cost_estimate,
+                    'projects_id' => $project_id,
+                );
+                $this->model->use('MaintenanceModel')->createNote($data);
+            } else {
+               
+            }
         } else {
             $this->load->view('errors');
         }
@@ -199,13 +211,13 @@ class Maintenance extends Controller {
     public function updateVendors() {
         if($this->token == post('token')) {
             $data = array(
-                'vendors_id' => decode(post('vendors_id')),
-                'name'       => post('name'),
-                'contact'    => post('contact'),
-                'website'    => post('website'),
-                'email'      => post('email'),
-                'address'    => post('address'),
-                'country'    => post('country'),
+                'vendors_id'  => decode(post('vendors_id')),
+                'vendor_name' => post('name'),
+                'contact'     => post('contact'),
+                'website'     => post('website'),
+                'email'       => post('email'),
+                'address'     => post('address'),
+                'country'     => post('country'),
             );
             $this->model->use('MaintenanceModel')->updateVendors($data);
         } else {
@@ -216,12 +228,12 @@ class Maintenance extends Controller {
     public function createVendors() {
         if($this->token == post('token')) {
             $data = array(
-                'name'    => post('name'),
-                'contact' => post('contact'),
-                'website' => post('website'),
-                'email'   => post('email'),
-                'address' => post('address'),
-                'country' => post('country'),
+                'vendor_name' => post('name'),
+                'contact'     => post('contact'),
+                'website'     => post('website'),
+                'email'       => post('email'),
+                'address'     => post('address'),
+                'country'     => post('country'),
             );
             $this->model->use('MaintenanceModel')->createVendors($data);
         } else {

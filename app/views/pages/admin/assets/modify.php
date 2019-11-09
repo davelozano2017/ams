@@ -32,6 +32,14 @@
                 <input type="hidden" name="token" value="<?=$token?>">
                 <input type="hidden" name="assets_type_id" value="<?=encode($getAssets[0]['assets_type_id'])?>">
                 <input type="hidden" name="assets_id" value="<?=encode($getAssets[0]['assets_id'])?>">
+
+                <div class="form-group">
+                    <label class="col-lg-3 control-label"></label>
+                    <div class="col-lg-9">
+                        <img src="<?=site_url('assets/uploads/'.$getAssets[0]['image'])?>" class="img-responsive" >
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Image:</label>
                     <div class="col-lg-9">
@@ -100,6 +108,14 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="col-lg-3 control-label">Expected Life:</label>
+                    <div class="col-lg-9">
+                        <input type="text" name="expected_life" class="form-control daterange-single" value="<?=$getAssets[0]['expected_life']?>" required>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
                     <label class="col-lg-3 control-label">Vendor:</label>
                     <div class="col-lg-9">
                         <select name="vendors_id" class="form-control">
@@ -119,13 +135,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-lg-3 control-label">Expected Life:</label>
-                    <div class="col-lg-9">
-                        <input type="date" name="expected_life" class="form-control" value="<?=$getAssets[0]['expected_life']?>" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label class="col-lg-3 control-label">Scrap Value:</label>
                     <div class="col-lg-9">
                         <input type="number" name="scrap_value" value="<?=$getAssets[0]['scrap_value']?>" class="form-control"  required>
@@ -141,3 +150,5 @@
                
             </div>
         </div>
+
+        <div class="clearfix"></div>

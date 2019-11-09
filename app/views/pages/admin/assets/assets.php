@@ -102,26 +102,53 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <?php if($data['getAssetsType'][0]['assets_name'] != 'Inventory') { ?>
+                        <hr>
+
+                        <?php if($data['getAssetsType'][0]['assets_name'] != 'Inventory') { ?>
+                        <div class="row">
+                            <div class="form-group pull-right">
+                                <div class="col-lg-9">
+                                    <button type="button" onclick="showDeprecationModal()" class="btn btn-primary pull-left"><i class="icon-arrow-left13 position-left"></i>Depreciation Method</button>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
+                       <div class="form-group">
                             <label class="col-lg-3 control-label">Purchase Price:</label>
                             <div class="col-lg-9">
-                                <input type="number" name="purchase_price" class="form-control"  required>
+                                <input type="number" readonly name="purchase_price" id="purchase_price" class="form-control"  required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Expected Life:</label>
                             <div class="col-lg-9">
-                                <input type="date" name="expected_life" class="form-control"  required>
+                                <input type="text" readonly name="expected_life" id="expected_life" class="form-control"  required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Scrap Value:</label>
                             <div class="col-lg-9">
-                                <input type="text" name="scrap_value" class="form-control"  required>
+                                <input type="text" readonly name="scrap_value" id="scrap_value" class="form-control"  required>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Salvage Value:</label>
+                            <div class="col-lg-9">
+                                <input type="text" readonly name="salvage_value" id="salvage_value" class="form-control"  required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">Depreciation Cost:</label>
+                            <div class="col-lg-9">
+                                <input type="text" readonly name="depreciation_cost" id="depreciation_cost" class="form-control"  required>
+                            </div>
+                        </div>
+                        <?php } ?>
 
                         <div class="text-right">
                             <button type="submit" class="btn btn-primary">Save <i class="icon-arrow-right14 position-right"></i></button>
@@ -172,3 +199,60 @@
             </div>
         </div>
     </div>
+
+
+
+<div id="showDeprecationModal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-info">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h6 class="modal-title">Depreciation</h6>
+            </div>
+
+            <div class="modal-body">
+                <form class="form-horizontal" method="POST" data-parsley-validate>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Purchase Price:</label>
+                        <div class="col-lg-9">
+                            <input type="number" min=0 value=0 id="cpurchase_price" class="form-control"  required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Expected Life:</label>
+                        <div class="col-lg-9">
+                            <input type="text" id="cexpected_life" name="cexpected_life" class="form-control daterange-single" value="03/18/2013">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Scrap Value:</label>
+                        <div class="col-lg-9">
+                            <input type="number" id="cscrap_value" value="0" min=0 class="form-control"  required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Salvage Value:</label>
+                        <div class="col-lg-9">
+                            <input type="number" id="csalvage_value" min=0 readonly value="0" class="form-control"  required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Depreciation Cost:</label>
+                        <div class="col-lg-9">
+                            <input type="text" readonly id="cdepreciation_cost" class="form-control"  required>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="modal-footer">
+                <button type="button" id="btnComputeWithoutExit" class="btn btn-info">Compute <i class="icon-arrow-right14 position-right"></i></button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -17,7 +17,7 @@ class Dashboard extends Controller {
         $data['assets_type'] = $this->model->use('AssetsModel')->GetAllAssetsType();
         foreach ($data['type'] as $rows) {
             $count = $this->model->use('AssetsModel')->CountAssetsTypeByAssetsId($rows['assets_type_id']);
-            array_push($show, array('count' => $count));
+            array_push($show, array('count' => $count,'assets_id' =>$rows['assets_type_id'] ));
         }
         $data['countAllUsers'] = $this->model->use('AccountsModel')->countAllUsers();
         $data['query'] = $show;

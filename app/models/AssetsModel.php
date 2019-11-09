@@ -39,6 +39,15 @@ class AssetsModel extends model {
         ],'*',[$this->table[2].'.vendors_id' => $vendors_id]);
     }
 
+    public function GetFilteredAssets($data) {
+        return $this->db->select($this->table[0], [
+            "[>]".$this->table[1] => ["assets_type_id" => "assets_type_id"],
+            "[>]".$this->table[2] => ["vendors_id" => "vendors_id"],
+            "[>]".$this->table[3] => ["brands_id" => "brands_id"],
+            "[>]".$this->table[4] => ["accounts_id" => "accounts_id"]
+        ],'*',["expected_life[<>]" => [$data['from'], $data['to']]]);
+    }
+
     public function GetAssetByAssetsId($assets_id) {
         return $this->db->select($this->table[0], [
             "[>]".$this->table[1] => ["assets_type_id" => "assets_type_id"],

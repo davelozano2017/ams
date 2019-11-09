@@ -16,6 +16,7 @@
 	<link href="<?=base_url()?>assets/css/components.min.css" rel="stylesheet" type="text/css">
 	<link href="<?=base_url()?>assets/css/colors.min.css" rel="stylesheet" type="text/css">
 	<link href="<?=base_url()?>assets/images/logo_icon_dark.png" rel="icon">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<!-- /global stylesheets -->
 	<style>
 		button,input[type="submit"],input[type="button"],a	{

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2019 at 07:36 PM
+-- Generation Time: Jul 23, 2019 at 12:32 AM
 -- Server version: 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -69,22 +69,19 @@ CREATE TABLE `assets` (
   `model` varchar(255) NOT NULL,
   `warranty_expiry` varchar(255) NOT NULL,
   `vendors_id` int(11) NOT NULL,
-  `is_method` varchar(255) NOT NULL,
   `purchase_price` int(11) NOT NULL,
   `expected_life` varchar(255) NOT NULL,
   `scrap_value` varchar(255) NOT NULL,
-  `salvage_value` int(11) NOT NULL,
-  `deprecation_cost` int(11) NOT NULL
+  `purchase_date` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `assets`
 --
 
-INSERT INTO `assets` (`assets_id`, `accounts_id`, `image`, `serial_number`, `brands_id`, `description`, `assets_type_id`, `status`, `model`, `warranty_expiry`, `vendors_id`, `is_method`, `purchase_price`, `expected_life`, `scrap_value`, `salvage_value`, `deprecation_cost`) VALUES
-(3, 4, 'Untitled.png', 'asdasd', 1, 'tes', 1, 'test', 'tes', '2019-07-19', 1, '', 2122, '2019-07-19', '2222112', 0, 0),
-(4, 2, 'Untitled.png', 'zxczczxcxzcz', 1, 'asdasd', 1, 'asda', '232323', '2019-07-12', 1, '', 232323, '2019-07-18', '3232323', 0, 0),
-(6, 5, 'Untitled.png', 'test', 1, 'test', 2, 'test', 'test', '2019-07-11', 1, '', 222222, '2019-07-11', '22122', 0, 0);
+INSERT INTO `assets` (`assets_id`, `accounts_id`, `image`, `serial_number`, `brands_id`, `description`, `assets_type_id`, `status`, `model`, `warranty_expiry`, `vendors_id`, `purchase_price`, `expected_life`, `scrap_value`, `purchase_date`) VALUES
+(3, 2, '51210457_793099894387067_8060671763593297920_n.jpg', 'asdasd', 1, 'tes', 1, 'test', 'tes', '2019-07-19', 1, 2122, '2019-07-19', '2222112', ''),
+(4, 2, '', 'zxczczxcxzcz', 1, 'asdasd', 1, 'asda', '232323', '2019-07-12', 1, 232323, '2019-07-18', '3232323', '');
 
 -- --------------------------------------------------------
 
@@ -430,14 +427,6 @@ CREATE TABLE `projects_timeline` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `projects_timeline`
---
-
-INSERT INTO `projects_timeline` (`projects_timeline_id`, `projects_id`, `note`, `created_at`) VALUES
-(5, 2, 'added 10,1000 for this project', '2019-07-27 06:57:24'),
-(6, 2, 'added again', '2019-07-27 06:57:39');
-
 -- --------------------------------------------------------
 
 --
@@ -481,7 +470,7 @@ CREATE TABLE `vendors` (
 INSERT INTO `vendors` (`vendors_id`, `vendor_name`, `contact`, `website`, `email`, `address`, `country`) VALUES
 (1, 'A M Kuchling', '09995522116', 'http://example.com', 'kuchling@hotmail.com', '31 South Valley Farms St. Livermore, 94550', 'California'),
 (2, 'Lorem', '09995522116', 'http://example.com', 'lorem@hotmail.com', 'Quezon City', 'Philippines'),
-(8, 'SM', '091564868452', 'www.erojerome.com', 'jerome@gmail.com', 'malabon city', 'Philippines'),
+(8, 'Jerome RIvera', '09156486845', 'www.erojerome.com', 'jerome@gmail.com', 'malabon city', 'Philippines'),
 (9, 'minato arisato', '09181864865', 'http://example.com', 'minatoa@gmail.com', '', 'Japan');
 
 --
@@ -556,19 +545,19 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
-  MODIFY `assets_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `assets_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `assets_type`
 --
 ALTER TABLE `assets_type`
-  MODIFY `assets_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `assets_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `brands_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `brands_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `countries`
@@ -586,7 +575,7 @@ ALTER TABLE `projects`
 -- AUTO_INCREMENT for table `projects_timeline`
 --
 ALTER TABLE `projects_timeline`
-  MODIFY `projects_timeline_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `projects_timeline_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `settings`

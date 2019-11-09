@@ -64,6 +64,7 @@
                         <label class="col-lg-3 control-label">Cost Estimate:</label>
                         <div class="col-lg-9">
                             <input type="number" name="cost_estimate" value="<?=$query[0]['cost_estimate']?>" class="form-control"  required>
+                            <input type="hidden" name="orig_cost_estimate" value="<?=$query[0]['cost_estimate']?>" class="form-control"  required>
                         </div>
                     </div>
 

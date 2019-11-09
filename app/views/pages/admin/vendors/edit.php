@@ -35,14 +35,14 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Name:</label>
                     <div class="col-lg-9">
-                        <input type="text" name="name" value="<?=$vendors[0]['name']?>" class="form-control" required>
+                        <input type="text" name="name" value="<?=$vendors[0]['vendor_name']?>" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Contact:</label>
                     <div class="col-lg-9">
-                        <input type="text" name="contact" value="<?=$vendors[0]['contact']?>" class="form-control" required>
+                        <input type="text" name="contact" pattern="\d{11}" minlength=11  maxlength=11 value="<?=$vendors[0]['contact']?>" class="form-control" required>
                     </div>
                 </div>
 

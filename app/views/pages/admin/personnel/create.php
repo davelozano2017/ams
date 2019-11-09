@@ -30,7 +30,7 @@
             <div class="panel-body">
                 
                 <div class="form-group">
-                    <label class="col-lg-3 control-label">Id Number:</label>
+                    <label class="col-lg-3 control-label">Employee ID:</label>
                     <div class="col-lg-9">
                         <input type="text" name="id_number" class="form-control" required>
                     </div>
@@ -39,14 +39,14 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Name:</label>
                     <div class="col-lg-9">
-                        <input type="text" name="name" class="form-control" required>
+                        <input type="text" name="name" pattern="^[ a-zA-Z]+(\s[a-zA-Z]+)?$" maxlength=60 class="form-control" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Contact:</label>
                     <div class="col-lg-9">
-                        <input type="text" name="contact" class="form-control" required>
+                        <input type="text" name="contact" pattern="\d{11}" minlength=11  maxlength=11 class="form-control" required>
                     </div>
                 </div>
 

@@ -33,14 +33,14 @@
             <div class="form-group">
                 <label class="col-lg-3 control-label">Name:</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" name="name" value="<?=$user[0]['name']?>" required>
+                    <input type="text" class="form-control" pattern="^[ a-zA-Z]+(\s[a-zA-Z]+)?$" maxlength=60 name="name" value="<?=$user[0]['name']?>" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-lg-3 control-label">Contact Number:</label>
                 <div class="col-lg-9">
-                    <input type="text" class="form-control" name="contact" value="<?=$user[0]['contact']?>" required>
+                    <input type="text" class="form-control" pattern="\d{11}"  minlength=11 maxlength=11 name="contact" value="<?=$user[0]['contact']?>" required>
                 </div>
             </div>
 
@@ -62,6 +62,13 @@
                 <label class="col-lg-3 control-label">Confirm Password:</label>
                 <div class="col-lg-9">
                     <input type="password" name="confirm_password" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-3 control-label"></label>
+                <div class="col-lg-9">
+                    <b>Note: Minimum atleast 8 characters and should contain at least : 1 capital letter, 1 number and 1 special character</b>
                 </div>
             </div>
 

@@ -18,7 +18,7 @@
 	<!-- /global stylesheets -->
 </head>
 
-<body class="login-container">
+<body class="login-container" style="background:url('https://www.dnnsoftware.com/Portals/0/Images/hero-background-4-1.jpg?ver=2017-08-17-190903-737')">
 
 	<!-- Page container -->
 	<div class="page-container">

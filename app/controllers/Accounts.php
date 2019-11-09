@@ -24,8 +24,8 @@ class Accounts extends Controller {
                 'contact'       => post('contact'),
                 'email'         => post('email'),
                 'password'      => hashing('12345'),
-                'role'          => 1,
-                'status'        => 1
+                'is_status'     => 1,
+                'role'          => 1
             );
             $this->model->use('AccountsModel')->createPersonnel($data);
         } else {

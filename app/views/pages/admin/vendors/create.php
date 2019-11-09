@@ -39,7 +39,7 @@
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Contact:</label>
                     <div class="col-lg-9">
-                        <input type="text" name="contact" class="form-control" required>
+                        <input type="text" name="contact" pattern="\d{11}" minlength=11  maxlength=11 class="form-control" required>
                     </div>
                 </div>
 

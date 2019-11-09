@@ -44,7 +44,7 @@
             <thead>
                 <tr>
                     <th style="width:1px">#</th>
-                    <th>Id Number</th>
+                    <th>Employee ID</th>
                     <th>Name</th>
                     <th style="width:1px">Contact</th>
                     <th style="width:1px">Status</th>
